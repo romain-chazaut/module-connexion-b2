@@ -1,6 +1,10 @@
 <?php
+session_start(); // Déplacer session_start() au tout début
 require 'class/Config.php'; // Inclure la configuration de la base de données
+require 'class/Database.php';
 
+$database = new Database();
+$pdo = $database->getPDO();
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -14,8 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $query->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
-            // Démarrer la session et stocker l'information de l'utilisateur en session
-            session_start();
             $_SESSION['user'] = $user;
             header("Location: dashboard.php"); // Redirigez vers une page de tableau de bord ou la page d'accueil après une connexion réussie
             exit;
@@ -37,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
     <!-- Inclure le CSS ici -->
+    <link rel="stylesheet" href="path_to_your_css_file.css"> <!-- Remplacez path_to_your_css_file.css par le chemin de votre fichier CSS -->
 </head>
 <body>
     <h1>Connexion</h1>
