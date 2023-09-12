@@ -1,16 +1,17 @@
 <?php
 session_start();
 
-require 'class/Config.php';
-require 'class/Database.php';
+require_once 'class/Config.php';
+require_once 'class/Database.php';
 
 $database = new Database();
 $pdo = $database->getPDO();
 
-if (!isset($_SESSION['user']) || $_SESSION['user']['login'] !== 'admiN1337$') {
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     header("Location: connexion.php");
     exit;
 }
+
 
 $users = [];
 try {
@@ -29,18 +30,20 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Liste des utilisateurs</title>
+    <link rel="stylesheet" href="assets/CSS/styles.css">
 </head>
 <body>
+
+<div class="container">
     <h1>Liste des utilisateurs</h1>
 
-    <table border="1">
+    <table class="styled-table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Login</th>
                 <th>Prénom</th>
                 <th>Nom</th>
-                <!-- Ajoutez d'autres colonnes si nécessaire -->
             </tr>
         </thead>
         <tbody>
@@ -55,5 +58,8 @@ try {
             <?php endforeach; ?>
         </tbody>
     </table>
+</div>
+
 </body>
 </html>
+

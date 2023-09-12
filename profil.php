@@ -42,14 +42,18 @@ $user = $stmt->fetch();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier le profil</title>
+    <link rel="stylesheet" href="assets/CSS/styles.css">
 </head>
 <body>
-    <h1>Modifier le profil</h1>
-    
-    <!-- Bouton de déconnexion -->
-    <p><a href="deconnexion.php">Déconnexion</a></p>
+<div class="container">
 
-    
+    <h1>Modifier le profil</h1>
+
+    <div class="action-links">
+        <!-- Bouton de déconnexion -->
+        <a href="deconnexion.php" class="btn btn-logout">Déconnexion</a>
+    </div>
+
     <?php if ($error): ?>
         <div class="error"><?php echo $error; ?></div>
     <?php endif; ?>
@@ -58,17 +62,29 @@ $user = $stmt->fetch();
         <div class="success"><?php echo $success; ?></div>
     <?php endif; ?>
 
-    <form action="profil.php" method="post">
-        <label for="login">Login:</label>
-        <input type="text" name="login" id="login" value="<?php echo $user['login']; ?>" required><br>
-        
-        <label for="firstname">Prénom:</label>
-        <input type="text" name="firstname" id="firstname" value="<?php echo $user['firstname']; ?>" required><br>
+    <div class="form-wrapper">
+        <form action="profil.php" method="post">
+            <div class="form-group">
+                <label for="login">Login:</label>
+                <input type="text" name="login" id="login" value="<?php echo htmlspecialchars($user['login']); ?>" required>
+            </div>
 
-        <label for="lastname">Nom:</label>
-        <input type="text" name="lastname" id="lastname" value="<?php echo $user['lastname']; ?>" required><br>
+            <div class="form-group">
+                <label for="firstname">Prénom:</label>
+                <input type="text" name="firstname" id="firstname" value="<?php echo htmlspecialchars($user['firstname']); ?>" required>
+            </div>
 
-        <input type="submit" value="Mettre à jour">
-    </form>
+            <div class="form-group">
+                <label for="lastname">Nom:</label>
+                <input type="text" name="lastname" id="lastname" value="<?php echo htmlspecialchars($user['lastname']); ?>" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Mettre à jour" class="btn">
+            </div>
+        </form>
+    </div>
+
+</div>
 </body>
 </html>

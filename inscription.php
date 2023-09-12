@@ -45,31 +45,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
+    <link rel="stylesheet" href="assets/CSS/styles.css">
 </head>
 <body>
+<div class="container">
+
     <h1>Inscription</h1>
 
     <?php if ($error): ?>
         <div class="error"><?php echo $error; ?></div>
     <?php endif; ?>
 
-    <form action="inscription.php" method="post">
-        <label for="login">Login:</label>
-        <input type="text" name="login" id="login" required><br>
-        
-        <label for="firstname">Prénom:</label>
-        <input type="text" name="firstname" id="firstname" required><br>
+    <div class="form-wrapper">
+        <form action="inscription.php" method="post">
+            <div class="form-group">
+                <label for="login">Login:</label>
+                <input type="text" name="login" id="login" required>
+            </div>
 
-        <label for="lastname">Nom:</label>
-        <input type="text" name="lastname" id="lastname" required><br>
+            <div class="form-group">
+                <label for="firstname">Prénom:</label>
+                <input type="text" name="firstname" id="firstname" required>
+            </div>
 
-        <label for="password">Mot de passe:</label>
-        <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,}" required><br>
+            <div class="form-group">
+                <label for="lastname">Nom:</label>
+                <input type="text" name="lastname" id="lastname" required>
+            </div>
 
-        <label for="passwordConfirm">Confirmez le mot de passe:</label>
-        <input type="password" name="passwordConfirm" id="passwordConfirm" required><br>
+            <div class="form-group">
+                <label for="password">Mot de passe:</label>
+                <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,}" required>
+            </div>
 
-        <input type="submit" value="S'inscrire">
-    </form>
+            <div class="form-group">
+                <label for="passwordConfirm">Confirmez le mot de passe:</label>
+                <input type="password" name="passwordConfirm" id="passwordConfirm" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="S'inscrire" class="btn">
+            </div>
+        </form>
+    </div>
+
+</div>
 </body>
 </html>

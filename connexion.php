@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require 'class/Config.php';
-require 'class/Database.php';
+require_once 'class/Config.php';
+require_once 'class/Database.php';
 
 $database = new Database();
 $pdo = $database->getPDO();
@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
+    <link rel="stylesheet" href="assets/CSS/styles.css">
 </head>
 <body>
     <h1>Connexion</h1>

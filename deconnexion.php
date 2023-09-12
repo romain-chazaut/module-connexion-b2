@@ -1,7 +1,7 @@
 <?php
 session_start();
-require 'class/Config.php'; 
-require 'class/Database.php';
+require_once 'class/Config.php'; 
+require_once 'class/Database.php';
 
 // Détruit toutes les variables de session
 $_SESSION = array();
