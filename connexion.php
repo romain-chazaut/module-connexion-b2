@@ -1,10 +1,9 @@
 <?php
-session_start(); // Déplacer session_start() au tout début
-require 'class/Config.php'; // Inclure la configuration de la base de données
+require 'class/Config.php';
 require 'class/Database.php';
-
 $database = new Database();
 $pdo = $database->getPDO();
+
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -18,8 +17,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $query->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
+            session_start();
             $_SESSION['user'] = $user;
-            header("Location: dashboard.php"); // Redirigez vers une page de tableau de bord ou la page d'accueil après une connexion réussie
+            
+            if ($user['login'] === 'admiN1337$') {
+                header("Location: admin.php");
+            } else {
+                header("Location: profil.php");
+            }
+            
             exit;
         } else {
             $error = "Login ou mot de passe incorrect.";
@@ -39,7 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
     <!-- Inclure le CSS ici -->
-    <link rel="stylesheet" href="path_to_your_css_file.css"> <!-- Remplacez path_to_your_css_file.css par le chemin de votre fichier CSS -->
 </head>
 <body>
     <h1>Connexion</h1>
@@ -51,10 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form action="connexion.php" method="post">
         <label for="login">Login:</label>
         <input type="text" name="login" id="login" required><br>
-
         <label for="password">Mot de passe:</label>
         <input type="password" name="password" id="password" required><br>
-
         <input type="submit" value="Se connecter">
     </form>
 </body>
