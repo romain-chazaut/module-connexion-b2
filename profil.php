@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-require 'class/Database.php';
+require_once 'class/Config.php';
+require_once 'class/Database.php';
 
 $database = new Database();
 $pdo = $database->getPDO();
-
 
 if (!isset($_SESSION['user'])) {
     header("Location: connexion.php");
@@ -42,10 +42,13 @@ $user = $stmt->fetch();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier le profil</title>
-
 </head>
 <body>
     <h1>Modifier le profil</h1>
+    
+    <!-- Bouton de déconnexion -->
+    <p><a href="deconnexion.php">Déconnexion</a></p>
+
     
     <?php if ($error): ?>
         <div class="error"><?php echo $error; ?></div>

@@ -1,26 +1,17 @@
 <?php
 
+require_once 'Config.php';
+
 class Database {
-    private $dbhost = 'localhost';
-    private $dbName = 'moduleconnexionb2';
-    private $dbuser = 'root';
-    private $dbPassword = 'Romain-1964';
-    private $charset = 'utf8mb4';
-
     private $pdo;
-    
-    public function __construct() {
-        $dsn = "mysql:host={$this->dbhost};dbname={$this->dbName};charset={$this->charset}";
-        $options = [
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES   => false,
-        ];
 
+    public function __construct() {
         try {
-            $this->pdo = new PDO($dsn, $this->dbuser, $this->dbPassword, $options);
-        } catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+            $this->pdo = new PDO(Config::getDSN(), Config::getDbUser(), Config::getDbPassword(), Config::getOptions());
+            echo "Connexion réussie à la base de données!";
+        } catch (PDOException $e) {
+            echo "Erreur de connexion à la base de données: " . $e->getMessage();
+            throw new PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
 

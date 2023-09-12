@@ -1,6 +1,9 @@
 <?php
+session_start();
+
 require 'class/Config.php';
 require 'class/Database.php';
+
 $database = new Database();
 $pdo = $database->getPDO();
 
@@ -17,16 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $query->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
-            session_start();
             $_SESSION['user'] = $user;
-            
+
             if ($user['login'] === 'admiN1337$') {
                 header("Location: admin.php");
+                exit;
             } else {
                 header("Location: profil.php");
+                exit;
             }
-            
-            exit;
         } else {
             $error = "Login ou mot de passe incorrect.";
         }
@@ -44,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <!-- Inclure le CSS ici -->
 </head>
 <body>
     <h1>Connexion</h1>

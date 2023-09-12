@@ -1,12 +1,13 @@
 <?php
 session_start();
-require 'class/Config.php'; 
-require 'class/Database.php';
+require_once 'class/Config.php'; 
+require_once 'class/Database.php';
 
 $database = new Database();
 $pdo = $database->getPDO();
 
 $error = '';
+$success = ''; // Ajout d'un message de succès
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = trim(filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING));
@@ -15,7 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = trim($_POST['password']);
     $passwordConfirm = trim($_POST['passwordConfirm']);
 
-    if ($password !== $passwordConfirm) {
+    // Vérification de l'unicité du login
+    $checkQuery = $pdo->prepare("SELECT login FROM user WHERE login = ?");
+    $checkQuery->execute([$login]);
+    if ($checkQuery->fetch()) {
+        $error = "Ce login est déjà pris.";
+    } elseif ($password !== $passwordConfirm) {
         $error = "Les mots de passe ne correspondent pas.";
     } else {
         try {
@@ -39,7 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-    <!-- Inclure le CSS ici -->
 </head>
 <body>
     <h1>Inscription</h1>

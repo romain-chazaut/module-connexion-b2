@@ -1,12 +1,15 @@
 <?php
 
-require 'class/Config.php';
 session_start();
+require_once 'class/Config.php';
+require_once 'class/Database.php';
+require_once 'class/User.php';
+
+
+$database = new Database();
+$connection = $database->getPDO();
 
 try {
-    $connection = new PDO("mysql:host=$dbhost;dbname=$dbName", $dbuser, $dbPassword);
-    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     // Assainissement des données
     $login = trim(filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING));
     $firstname = trim(filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING));
