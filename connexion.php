@@ -49,18 +49,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/CSS/styles.css">
 </head>
 <body>
+
+<div class="container">
     <h1>Connexion</h1>
 
     <?php if ($error): ?>
-        <div class="error"><?php echo $error; ?></div>
+        <div class="error-message"><?php echo $error; ?></div>
     <?php endif; ?>
 
-    <form action="connexion.php" method="post">
-        <label for="login">Login:</label>
-        <input type="text" name="login" id="login" required><br>
-        <label for="password">Mot de passe:</label>
-        <input type="password" name="password" id="password" required><br>
-        <input type="submit" value="Se connecter">
+    <form action="connexion.php" method="post" class="form-group">
+        <label for="login" class="label">Login:</label>
+        <input type="text" name="login" id="login" required>
+        
+        <label for="password" class="label">Mot de passe:</label>
+        <input type="password" name="password" id="password" required>
+        
+        <input type="submit" value="Se connecter" class="btn">
     </form>
+
+    <div class="button-group">
+        <a href="inscription.php" class="btn">Pas encore inscrit? Inscrivez-vous</a>
+    </div>
+</div>
+
 </body>
 </html>

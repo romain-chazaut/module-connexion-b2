@@ -17,15 +17,29 @@ require_once 'class/Config.php';
 <div class="container">
     <h1>Bienvenue sur notre site</h1>
 
-    <div class="button-group">
-        <a href="inscription.php" class="btn">Inscription</a>
-        <a href="connexion.php" class="btn">Connexion</a>
-        <!-- Bouton de déconnexion -->
+    <div class="form-group">
+        <input type="submit" value="Inscription" data-url="inscription.php" class="btn">
+        <input type="submit" value="Connexion" data-url="connexion.php" class="btn">
         <?php if (isset($_SESSION['user'])): ?>
-            <a href="deconnexion.php" class="btn btn-logout">Déconnexion</a>
+            <input type="submit" value="Déconnexion" data-url="deconnexion.php" class="btn btn-logout">
         <?php endif; ?>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let buttons = document.querySelectorAll('.btn');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', function (e) {
+                let url = e.target.getAttribute('data-url');
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

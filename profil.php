@@ -50,7 +50,6 @@ $user = $stmt->fetch();
     <h1>Modifier le profil</h1>
 
     <div class="action-links">
-        <!-- Bouton de déconnexion -->
         <a href="deconnexion.php" class="btn btn-logout">Déconnexion</a>
     </div>
 

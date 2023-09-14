@@ -48,47 +48,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/CSS/styles.css">
 </head>
 <body>
-<div class="container">
 
+<div class="container">
     <h1>Inscription</h1>
 
     <?php if ($error): ?>
-        <div class="error"><?php echo $error; ?></div>
+        <div class="error-message"><?php echo $error; ?></div>
+    <?php endif; ?>
+    <?php if ($success): ?>
+        <div class="success-message"><?php echo $success; ?></div>
     <?php endif; ?>
 
-    <div class="form-wrapper">
-        <form action="inscription.php" method="post">
-            <div class="form-group">
-                <label for="login">Login:</label>
-                <input type="text" name="login" id="login" required>
-            </div>
+    <form action="inscription.php" method="post">
 
-            <div class="form-group">
-                <label for="firstname">Prénom:</label>
-                <input type="text" name="firstname" id="firstname" required>
-            </div>
+        <div class="form-group">
+            <label for="login" class="label">Login:</label>
+            <input type="text" name="login" id="login" required>
+        </div>
 
-            <div class="form-group">
-                <label for="lastname">Nom:</label>
-                <input type="text" name="lastname" id="lastname" required>
-            </div>
+        <div class="form-group">
+            <label for="firstname" class="label">Prénom:</label>
+            <input type="text" name="firstname" id="firstname" required>
+        </div>
 
-            <div class="form-group">
-                <label for="password">Mot de passe:</label>
-                <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,}" required>
-            </div>
+        <div class="form-group">
+            <label for="lastname" class="label">Nom:</label>
+            <input type="text" name="lastname" id="lastname" required>
+        </div>
 
-            <div class="form-group">
-                <label for="passwordConfirm">Confirmez le mot de passe:</label>
-                <input type="password" name="passwordConfirm" id="passwordConfirm" required>
-            </div>
+        <div class="form-group">
+            <label for="password" class="label">Mot de passe:</label>
+            <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,}" required>
+        </div>
 
-            <div class="form-group">
-                <input type="submit" value="S'inscrire" class="btn">
-            </div>
-        </form>
+        <div class="form-group">
+            <label for="passwordConfirm" class="label">Confirmez le mot de passe:</label>
+            <input type="password" name="passwordConfirm" id="passwordConfirm" required>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="S'inscrire" class="btn">
+        </div>
+    </form>
+
+    <div class="button-group">
+        <a href="connexion.php" class="btn">Déjà inscrit? Connectez-vous</a>
     </div>
 
 </div>
+
 </body>
 </html>
