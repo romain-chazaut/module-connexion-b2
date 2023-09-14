@@ -49,9 +49,6 @@ $user = $stmt->fetch();
 
     <h1>Modifier le profil</h1>
 
-    <div class="action-links">
-        <a href="deconnexion.php" class="btn btn-logout">Déconnexion</a>
-    </div>
 
     <?php if ($error): ?>
         <div class="error"><?php echo $error; ?></div>
@@ -81,6 +78,11 @@ $user = $stmt->fetch();
             <div class="form-group">
                 <input type="submit" value="Mettre à jour" class="btn">
             </div>
+
+            <div class="action-links">
+                <a href="deconnexion.php" class="btn btn-logout">Déconnexion</a>
+            </div>
+
         </form>
     </div>
 

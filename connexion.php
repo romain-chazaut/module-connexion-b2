@@ -64,12 +64,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="password" class="label">Mot de passe:</label>
         <input type="password" name="password" id="password" required>
         
-        <input type="submit" value="Se connecter" class="btn">
-    </form>
+        
+    
 
     <div class="button-group">
+    <input type="submit" value="Se connecter" class="btn">
         <a href="inscription.php" class="btn">Pas encore inscrit? Inscrivez-vous</a>
     </div>
+    </form>
 </div>
 
 </body>

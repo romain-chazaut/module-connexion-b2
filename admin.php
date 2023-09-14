@@ -38,7 +38,7 @@ try {
     <h1>Liste des utilisateurs</h1>
 
     <table class="styled-table">
-        <thead>
+        <thead class="table-bord">
             <tr>
                 <th>ID</th>
                 <th>Login</th>
