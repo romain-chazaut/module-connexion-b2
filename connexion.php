@@ -20,9 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $query->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
+            session_regenerate_id(true);  // Pour éviter les attaques de fixation de session
             $_SESSION['user'] = $user;
 
-            if ($user['login'] === 'admiN1337$') {
+            if ($user['role'] === 'admin') {  // Vérification basée sur le rôle
                 header("Location: admin.php");
                 exit;
             } else {
@@ -64,13 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="password" class="label">Mot de passe:</label>
         <input type="password" name="password" id="password" required>
         
-        
-    
-
-    <div class="button-group">
-    <input type="submit" value="Se connecter" class="btn">
-        <a href="inscription.php" class="btn">Pas encore inscrit? Inscrivez-vous</a>
-    </div>
+        <div class="button-group">
+            <input type="submit" value="Se connecter" class="btn">
+            <a href="inscription.php" class="btn">Pas encore inscrit? Inscrivez-vous</a>
+        </div>
     </form>
 </div>
 

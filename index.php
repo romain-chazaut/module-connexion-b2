@@ -23,10 +23,12 @@ require_once 'class/Config.php';
         <?php if (isset($_SESSION['user'])): ?>
             <input type="submit" value="Déconnexion" data-url="deconnexion.php" class="btn btn-logout">
         <?php endif; ?>
+        
     </div>
 </div>
 
 <script>
+
     document.addEventListener('DOMContentLoaded', function () {
         let buttons = document.querySelectorAll('.btn');
 
@@ -40,6 +42,8 @@ require_once 'class/Config.php';
         });
     });
 </script>
+
+
 
 </body>
 </html>

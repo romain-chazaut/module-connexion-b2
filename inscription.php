@@ -7,7 +7,7 @@ $database = new Database();
 $pdo = $database->getPDO();
 
 $error = '';
-$success = ''; // Ajout d'un message de succès
+$success = ''; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = trim(filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING));

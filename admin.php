@@ -12,7 +12,6 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     exit;
 }
 
-
 $users = [];
 try {
     $stmt = $pdo->query("SELECT * FROM user");
@@ -53,7 +52,6 @@ try {
                 <td><?php echo $user['login']; ?></td>
                 <td><?php echo $user['firstname']; ?></td>
                 <td><?php echo $user['lastname']; ?></td>
-                <!-- Ajoutez d'autres colonnes si nécessaire -->
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -62,4 +60,3 @@ try {
 
 </body>
 </html>
-
